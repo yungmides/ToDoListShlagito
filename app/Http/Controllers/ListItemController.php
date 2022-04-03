@@ -5,17 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreListItemRequest;
 use App\Http\Requests\UpdateListItemRequest;
 use App\Models\ListItem;
+use App\Models\ToDoList;
 
 class ListItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(ToDoList $toDoList)
     {
-        //
+        return view('to_do_lists.list_items.index', compact('toDoList'));
     }
 
     /**

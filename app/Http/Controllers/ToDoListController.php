@@ -57,11 +57,11 @@ class ToDoListController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\ToDoList  $toDoList
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function show(ToDoList $toDoList)
     {
-        //
+        return redirect()->route('to_do_lists.list_items.index', ['to_do_list' => $toDoList]);
     }
 
     /**
