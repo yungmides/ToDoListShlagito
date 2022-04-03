@@ -29,7 +29,8 @@ class StoreListItemRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "item_name" => "required|string|max:255",
+            "item_content" => "required|string|max:1000",
         ];
     }
 }

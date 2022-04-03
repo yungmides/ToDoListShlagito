@@ -15,14 +15,17 @@
             </div>
             <div class="grid grid-cols-3 gap-4">
                 @forelse ($toDoList->listItems as $item)
-                    <div class="col-span-full lg:col-span-1 w-full bg-white drop-shadow-lg rounded-lg p-10">
+                    <div class="col-span-full lg:col-span-1 bg-white w-full drop-shadow-lg  rounded-lg p-10">
                         <div class="space-y-2 mb-8">
                             <p class="text-xl font-bold">{{$item->item_name}}</p>
                             <p>{{$item->item_content}}</p>
+                            @if($item->done)
+                                <p class="text-green-500">This task is done.</p>
+                            @endif
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <a href="{{route('list_items.edit', ['list_item' => $item->id])}}">
-                                <button class="px-4 py-2 text-white rounded-md bg-green-500 h-full w-full">Edit your list</button>
+                                <button class="px-4 py-2 text-white rounded-md bg-green-500 h-full w-full">Edit item</button>
                             </a>
                             <form method="POST" action="{{route('list_items.destroy', ['list_item' => $item->id])}}">
                                 @csrf

@@ -17,7 +17,7 @@ class UpdateListItemRequest extends FormRequest
     public function authorize()
     {
         $listItem = $this->route("list_item");
-        return $listItem && Auth::id() === $listItem->toDoList()->user->id;
+        return $listItem && Auth::id() === $listItem->toDoList->user->id;
     }
 
     /**
@@ -28,7 +28,8 @@ class UpdateListItemRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "item_name" => "required|string|max:255",
+            "item_content" => "required|string|max:1000",
         ];
     }
 }
