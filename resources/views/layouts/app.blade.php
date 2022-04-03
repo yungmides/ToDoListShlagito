@@ -27,6 +27,10 @@
                 </div>
             </header>
 
+            <x-success class="mb-4" :status="session('status')" />
+
+            <x-errors class="mb-4" :errors="session('errors')" />
+
             <!-- Page Content -->
             <main>
                 {{ $slot }}

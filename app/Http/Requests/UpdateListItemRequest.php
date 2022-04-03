@@ -3,9 +3,12 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateListItemRequest extends FormRequest
 {
+    public $redirectRoute = 'to_do_lists.index';
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,7 +16,8 @@ class UpdateListItemRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        $listItem = $this->route("list_item");
+        return $listItem && Auth::id() === $listItem->toDoList()->user->id;
     }
 
     /**

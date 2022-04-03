@@ -11,6 +11,11 @@ class ToDoList extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "list_title",
+        "description"
+    ];
+
     public function listItems(): HasMany
     {
         return $this->hasMany(ListItem::class);

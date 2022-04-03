@@ -10,6 +10,12 @@ class ListItem extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "item_name",
+        "item_content",
+        "done"
+    ];
+
     public function toDoList(): BelongsTo
     {
         return $this->belongsTo(ToDoList::class);

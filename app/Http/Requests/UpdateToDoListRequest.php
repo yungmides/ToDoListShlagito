@@ -2,10 +2,14 @@
 
 namespace App\Http\Requests;
 
+use App\Models\ToDoList;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateToDoListRequest extends FormRequest
 {
+    public $redirectRoute = 'to_do_lists.index';
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,7 +17,8 @@ class UpdateToDoListRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        $toDoList = $this->route('to_do_list');
+        return $toDoList && Auth::id() === $toDoList->user->id;
     }
 
     /**
@@ -24,7 +29,8 @@ class UpdateToDoListRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'list_title' => 'required|string|max:50',
+            'description' => 'required|string'
         ];
     }
 }

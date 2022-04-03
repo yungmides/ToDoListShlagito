@@ -2,10 +2,14 @@
 
 namespace App\Http\Requests;
 
+use App\Models\ToDoList;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreListItemRequest extends FormRequest
 {
+    public $redirectRoute = 'to_do_lists.index';
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,7 +17,8 @@ class StoreListItemRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        $toDoList = $this->route('to_do_list');
+        return $toDoList && Auth::id() === $toDoList->user->id;
     }
 
     /**
