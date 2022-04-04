@@ -43,6 +43,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected static function booted()
+    {
+       static::deleting(function (User $user) {
+           $user->toDoLists()->delete();
+       });
+    }
+
     public function toDoLists(): HasMany
     {
         return $this->hasMany(ToDoList::class);

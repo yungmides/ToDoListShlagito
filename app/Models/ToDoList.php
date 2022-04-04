@@ -16,6 +16,13 @@ class ToDoList extends Model
         "description"
     ];
 
+    protected static function booted()
+    {
+        static::deleting(function (ToDoList $list) {
+            $list->listItems()->delete();
+        });
+    }
+
     public function listItems(): HasMany
     {
         return $this->hasMany(ListItem::class);
