@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class ToDoListFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "list_title" => $this->faker->title,
+            "description" => $this->faker->realText(),
+            "user_id" => User::all()->random()->id
         ];
     }
 }
