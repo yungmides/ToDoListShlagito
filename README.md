@@ -13,7 +13,7 @@ Une application basique de ToDoList en Laravel.
 1) ``composer install && npm i && npm run dev``
 2) Vérifier que `.env` existe, sinon copier ``.env.example`` dans `.env`
 3) ``./vendor/bin/sail up -d --build``
-4) ``./vendor/bin/sail artisan migrate:fresh --seed``
+4) ``./vendor/bin/sail artisan migrate:fresh``
 
 Protip: pour éviter de devoir taper la commande de sail à rallonge, créer un alias:
 
@@ -34,10 +34,7 @@ Lancez vos tests avec Sail :
 
 ### Sinon...
 
-Vous allez devoir faire tourner vos tests sur votre machine en local. Pour cela:
+Vous allez devoir changer votre image de Selenium dans le `docker-compose.yml`. 
 
-- Installez la dernière version de [Google Chrome](https://www.google.com/chrome/)
-- Lancez `php artisan dusk:install`
-- `php artisan dusk:chrome-driver --detect`
-- Si tout s'est bien passé, lancez Chrome et `php artisan dusk`
+Pour cela, remplacez l'image de `'seleniarm/standalone-chromium'` par `'selenium/standalone-chromium'`.
 
