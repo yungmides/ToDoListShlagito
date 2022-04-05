@@ -21,7 +21,7 @@ class ListItemFactory extends Factory
             "item_name" => $this->faker->name,
             "item_content" => $this->faker->realText,
             "done" => $this->faker->boolean,
-            "to_do_list_id" => ToDoList::all()->random()->id
+            "to_do_list_id" => ToDoList::factory()
         ];
     }
 }

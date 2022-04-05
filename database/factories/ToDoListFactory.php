@@ -20,7 +20,7 @@ class ToDoListFactory extends Factory
         return [
             "list_title" => $this->faker->title,
             "description" => $this->faker->realText(),
-            "user_id" => User::all()->random()->id
+            "user_id" => User::factory()
         ];
     }
 }
